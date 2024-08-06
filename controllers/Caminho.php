@@ -1,7 +1,8 @@
 <?php
 
-  include "./models/bloco.php";
-  include "./controllers/Avatar.php";
+  require_once '/home/jack/Projetos/Milton/Jogo-de-Aventura/models/Bloco.php';
+
+  include "../models/Avatar.php";
 
   $blocos = [];
   $indice = 0;
@@ -41,7 +42,6 @@
     }
   
 
-    echo "<br>".$avatar->nome."<br>";
     exibirCaminho();
 
   }
@@ -50,6 +50,7 @@
 
     global $blocos;
     global $tamanho;
+    global $avatar;
 
 
     for ($i=0; $i < $tamanho; $i++) { 
@@ -61,7 +62,7 @@
       }
 
       if($blocos[$i]->avatar){
-        echo " | 'Avatar'";
+        echo ($avatar->nome);
       }
 
       echo ";<br>";
@@ -93,9 +94,9 @@
 
 
 
-    $blocos[$indice]->avatar = true;
-
-    exibirCaminho();
+    $blocos[$indice]->avatar = $avatar;
+    echo ($avatar);
+    #exibirCaminho();
 
   }
 
