@@ -1,0 +1,220 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+} 
+*{
+    box-sizing: border-box;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fffdd0;
+}
+
+.container-box-game{
+    width: 550px;
+    height: 550px;
+    border: solid black 3px;
+    position: relative;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+.container-box-game-inner{
+    width: 100%;
+    height: 100%;
+    background-image: url("../Imagens/Modo_facil/Tela_inical_facil.png");
+    background-size: 100% 100%;
+    filter: blur(3px);
+    border-radius: 30px;
+}
+h1,h2{
+    font-family: 'Creepster', cursive;
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-size: 68px;
+}
+h2{
+    font-size: 22px;
+}
+.container-btn{
+    width: 180px;
+    height: 104px;
+    z-index: 1;
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+}
+.btn-play{
+    width: 180px;
+    height: 47px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url("../Imagens/Botoes/Play/Playtest.png");
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: 1s ease;
+}
+.btn-play:active{
+    background-image: url('../Imagens/Botoes/Play/Play_pressed_teste.png');
+    transition: easy 0.01ms;
+}
+.btn-rank{
+    width: 180px;
+    height: 47px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url("../Imagens/Botoes/Ranker/Placar_ranker_teste.png");
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: 0.01ms ease;
+}
+.btn-rank:active{
+    background-image: url('../Imagens/Botoes/Ranker/Placar_ranker_plessed_teste.png');
+}
+.btn-play:hover,.btn-rank:hover{
+    transform: scale(1.1);
+}
+.container-play{
+    width: 200px;
+    height: 161px;
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+    transform: scale(0);
+    display: grid;
+    justify-items: center;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+}
+.inline-box{
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+.btn-goBack{
+    width: 30px;
+    height: 25px;
+    margin-right: 3px;
+    border: none;
+    outline: none;
+    background-image: url('../Imagens/Botoes/Botao_voltar/Voltar_test.png');
+    background-color: transparent;
+    background-size: 100% 100%;
+}
+.btn-goBack:active{
+    background-image: url('../Imagens/Botoes/Botao_voltar/Voltar_pressed_teste.png');
+    transition: ease 0.01ms;
+}
+.container-rank{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+    transform: scale(0);
+}
+.btn-goBack-2{
+    width: 30px;
+    height: 25px;
+    border: none;
+    outline: none;
+    z-index: 1;
+    display: none;
+    position: absolute;
+    background-image: url('../Imagens/Botoes/Botao_voltar/Voltar_test.png');
+    background-color: transparent;
+    background-size: 100% 100%;
+    margin: 20px 0 0 20px;
+}
+.btn-goBack-2:active{
+    background-image: url('../Imagens/Botoes/Botao_voltar/Voltar_pressed_teste.png');
+    transition: ease 0.01ms;
+}
+.rank{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url('../Imagens/Placar/Placar_ranker.png');
+    background-size: 100% 100%;
+    background-position-x: 30px;
+    top: -550px;
+    animation: rankDown 3s linear forwards;
+}
+@keyframes rankDown {
+    from{
+        top: -550px;
+    }
+    to{
+        top: 0px;
+    }
+}
+.easy-btn{
+    width: 180px;
+    height: 47px;
+    border: none;
+    outline: none;
+    background-image: url('../Imagens/Botoes/Facil/Facilteste.png');
+    background-color: transparent;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: 1s ease;
+}
+.easy-btn:active{
+    background-image: url('../Imagens/Botoes/Facil/Facil_pressed_teste.png');
+    transition: ease 0.01ms;
+}
+.medium-btn{
+    width: 180px;
+    height: 47px;
+    border: none;
+    outline: none;
+    background-image: url('../Imagens/Botoes/Normal/Normalteste.png');
+    background-color: transparent;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: 1s ease;
+}
+.medium-btn:active{
+    background-image: url('../Imagens/Botoes/Normal/Normal_pressed_teste.png');
+    transition: ease 0.1ms;
+}
+.hard-btn{
+    width: 180px;
+    height: 47px;
+    border: none;
+    outline: none;
+    background-image: url('../Imagens/Botoes/Dificil/Dificilteste.png');
+    background-color: transparent;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    transition: 1s ease;
+}
+.hard-btn:active{
+    background-image: url('../Imagens/Botoes/Dificil/Dificil_pressed_teste.png');
+    transition: ease 0.01ms;
+}
+.easy-btn:hover, .medium-btn:hover, .hard-btn:hover{
+    transform: scale(1.1);
+}
