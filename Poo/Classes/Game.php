@@ -5,48 +5,48 @@ require_once 'Avatar.php';
 
 class Game {
     private $avatar;
-    private $blocoInicial;
+    private $caminho;
     private $blocoAtual;
-    private $mostrarBlocos;
-    private $estadoGeracaoBloco;
 
     public function __construct($nomeAvatar, $skinAvatar) {
         $this->avatar = new Avatar($nomeAvatar, $skinAvatar);
 
-        // Cria 6 blocos iniciais
-        $this->blocoInicial = new Bloco(rand(1, 4), "skin" . rand(1, 4) . ".png");
-        $this->blocoAtual = $this->blocoInicial;
-        $this->avatar->setBlocoAtual($this->blocoInicial);
-
-        $this->mostrarBlocos = [$this->blocoInicial];
-        $this->estadoGeracaoBloco = false;
-
-        $this->criarBlocosIniciais(5); // Cria mais 5 blocos
+        $this->caminho = new Bloco(rand(1, 4), "skin" . rand(1, 4) . ".png");
+        $this->blocoAtual = $this->caminho;
+        $this->avatar->setBlocoAtual($this->caminho);
+        
+        // Cria blocos iniciais
+        $this->caminho->gerarCaminho(5);
     }
 
-    public function __wakeup() {
-        // Aqui você pode reconfigurar qualquer estado necessário após a deserialização
+    public function mover($pulos) {
+        $this->moverAvatar($pulos);
+        $this->gerarBlocoSeNecessario();
     }
 
-    private function criarBlocosIniciais($quantidade) {
-        $blocoAtual = $this->blocoInicial;
-        for ($i = 0; $i < $quantidade; $i++) {
-            $tipo = rand(1, 4);
-            $skin = "skin" . rand(1, 4) . ".png";
-            $novoBloco = new Bloco($tipo, $skin);
-            $blocoAtual->encadearBloco($novoBloco);
-            $blocoAtual = $novoBloco;
-            $this->mostrarBlocos[] = $novoBloco;
+    private function moverAvatar($pulos) {
+        $this->avatar->andar($pulos);
+        $this->blocoAtual = $this->avatar->getBlocoAtual();
+        if ($this->blocoAtual !== null) {
+            switch ($this->blocoAtual->getTipo()) {
+                case 'Normal':
+                    $this->avatar->setPontuacao($this->avatar->getPontuacao() + 1);
+                    break;
+                case 'Explosao':
+                    $this->avatar->setVida($this->avatar->getVida() - 1);
+                    break;
+                case 'Energia':
+                    $this->avatar->setEnergia(true);
+                    break;
+                case 'Bonus':
+                    $this->avatar->setPontuacao($this->avatar->getPontuacao() + 2);
+                    break;
+            }
         }
+        $this->caminho->gerarCaminho($pulos);
     }
 
-    public function pressionarBotao() {
-        $this->moverAvatar();
-        $this->estadoGeracaoBloco = true;
-    }
-
-    private function moverAvatar() {
-        $this->avatar->moverParaProximoBloco();
+    private function gerarBlocoSeNecessario() {
         if ($this->avatar->getBlocoAtual() === null) {
             $tipo = rand(1, 4);
             $skin = "skin" . rand(1, 4) . ".png";
@@ -54,26 +54,26 @@ class Game {
             $this->adicionarBloco($novoBloco);
             $this->avatar->setBlocoAtual($novoBloco);
         }
-        $this->blocoAtual = $this->avatar->getBlocoAtual();
     }
 
     private function adicionarBloco($novoBloco) {
-        $blocoAtual = $this->blocoInicial;
+        $blocoAtual = $this->caminho;
         while ($blocoAtual->getProximo() !== null) {
             $blocoAtual = $blocoAtual->getProximo();
         }
         $blocoAtual->encadearBloco($novoBloco);
-        $this->mostrarBlocos[] = $novoBloco;
     }
 
     public function exibirBlocos() {
-        foreach ($this->mostrarBlocos as $bloco) {
-            echo "Tipo: " . $bloco->getTipo() . ", Skin: " . $bloco->getSkin() . "<br>";
-        }
+        $this->caminho->exibirBlocos();
     }
 
     public function getAvatar() {
         return $this->avatar;
+    }
+
+    public function getCaminho() {
+        return $this->caminho;
     }
 }
 ?>

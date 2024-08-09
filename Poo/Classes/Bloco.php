@@ -7,19 +7,25 @@ class Bloco {
 
     // Construtor
     public function __construct($tipo, $skin) {
-        $this->tipo = $tipo;
+        if ($tipo === 1) {
+            $this->tipo = "Normal";
+        }elseif ($tipo === 2) {
+            $this->tipo = "Explosao";
+        }elseif ($tipo === 3) {
+            $this->tipo = "Energia";
+        }elseif ($tipo === 4) {
+            $this->tipo = "Bonus";
+        }else {
+
+            $this->tipo = "desconhecido";
+        }
         $this->skin = $skin;
         $this->proximo = null;
     }
 
     // Getters e Setters
     public function getTipo() {
-        switch ($this->tipo) {
-            case 1: return "Normal";
-            case 2: return "Explosao";
-            case 3: return "Energia";
-            case 4: return "Bonus";
-        }
+        return $this->tipo;
     }
 
     public function getSkin() {
@@ -31,7 +37,10 @@ class Bloco {
     }
 
     public function setTipo($tipo) {
+        
         $this->tipo = $tipo;
+        
+        
     }
 
     public function setSkin($skin) {
@@ -46,14 +55,6 @@ class Bloco {
         $this->proximo = $bloco;
     }
 
-    public function adicionarBloco($tipo, $skin) {
-        $novoBloco = new Bloco($tipo, $skin);
-        $blocoAtual = $this;
-        while ($blocoAtual->getProximo() !== null) {
-            $blocoAtual = $blocoAtual->getProximo();
-        }
-        $blocoAtual->encadearBloco($novoBloco);
-    }
 
     public function exibirBlocos() {
         $blocoAtual = $this;
@@ -63,8 +64,14 @@ class Bloco {
         }
     }
 
-    public function criarBlocosAleatorios($quantidade) {
+    // Modificado para adicionar blocos sem limpar a cadeia existente
+    public function gerarCaminho($quantidade) {
         $blocoAtual = $this;
+        // Encontra o último bloco da cadeia existente
+        while ($blocoAtual->getProximo() !== null) {
+            $blocoAtual = $blocoAtual->getProximo();
+        }
+        // Adiciona novos blocos ao final da cadeia
         for ($i = 0; $i < $quantidade; $i++) {
             $tipo = rand(1, 4);
             $skin = "skin" . rand(1, 4) . ".png";
@@ -73,6 +80,8 @@ class Bloco {
             $blocoAtual = $novoBloco;
         }
     }
+
+
 }
 
 
