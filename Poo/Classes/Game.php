@@ -49,8 +49,8 @@ class Game {
 
     private function gerarBlocoSeNecessario() {
         if ($this->avatar->getBlocoAtual() === null) {
-            $tipo = rand(1, 4);
-            $skin = "skin" . rand(1, 4) . ".png";
+            $tipo = sortear();
+            $skin = "skin" . $tipo . ".png";
             $novoBloco = new Bloco($tipo, $skin);
             $this->adicionarBloco($novoBloco);
             $this->avatar->setBlocoAtual($novoBloco);
@@ -76,5 +76,8 @@ class Game {
     public function getCaminho() {
         return $this->caminho;
     }
+
+
+    
 }
 ?>

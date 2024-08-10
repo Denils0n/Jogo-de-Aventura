@@ -73,12 +73,29 @@ class Bloco {
         }
         // Adiciona novos blocos ao final da cadeia
         for ($i = 0; $i < $quantidade; $i++) {
-            $tipo = rand(1, 4);
+            $tipo = $this->sorteio();
             $skin = "skin" . rand(1, 4) . ".png";
             $novoBloco = new Bloco($tipo, $skin);
             $blocoAtual->encadearBloco($novoBloco);
             $blocoAtual = $novoBloco;
         }
+    }
+
+    private function sorteio() {
+        
+        $d= rand(1, 100);
+
+        if ($d <= 50) {
+            return 1;
+        }elseif ($d > 50 && $d <= 80) {
+            return 2;
+        }elseif ($d > 80 && $d <= 90) {
+            return 3;
+        }elseif ($d > 90 && $d <= 100) {
+            return 4;
+        }
+
+
     }
 
 
