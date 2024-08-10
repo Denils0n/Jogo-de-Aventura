@@ -11,7 +11,7 @@ class Game {
     public function __construct($nomeAvatar, $skinAvatar) {
         $this->avatar = new Avatar($nomeAvatar, $skinAvatar);
 
-        $this->caminho = new Bloco(rand(1, 4), "skin" . rand(1, 4) . ".png");
+        $this->caminho = new Bloco(1, "skin" . rand(1, 4) . ".png");
         $this->blocoAtual = $this->caminho;
         $this->avatar->setBlocoAtual($this->caminho);
         
@@ -34,6 +34,7 @@ class Game {
                     break;
                 case 'Explosao':
                     $this->avatar->setVida($this->avatar->getVida() - 1);
+                    
                     break;
                 case 'Energia':
                     $this->avatar->setEnergia(true);

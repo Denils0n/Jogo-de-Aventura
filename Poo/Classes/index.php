@@ -12,7 +12,11 @@ $game->getCaminho()->exibirBlocos();
 echo "Bloco atual do Avatar: Tipo: " . $game->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $game->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
 
 $game->mover(3);
-echo "Bloco atual do Avatar: Tipo: " . $game->getAvatar()->getPontuacao() . ", Skin: " . $game->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+echo "Bloco atual do Avatar: Tipo: " . $game->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $game->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+
+echo "Vida " . $game->getAvatar()->getVida() . "<br>";
+
+
 
 
 $game->getCaminho()->exibirBlocos();
