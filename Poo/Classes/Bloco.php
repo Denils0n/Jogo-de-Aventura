@@ -5,19 +5,28 @@ class Bloco {
     private $skin;
     private $proximo;
 
+    private static $contagemBlocos = array(
+        "energia" => 0,
+        "pontuacao" => 0,
+        "explosivo" => 0,
+        "explosao" => 0,
+        "blocos" => 0,
+        "normal" => 0,
+        "total" => 0
+    );
+
     // Construtor
     public function __construct($tipo, $skin) {
         if ($tipo === 1) {
-            $this->tipo = "Normal";
+            $this->setTipo("Normal");
         }elseif ($tipo === 2) {
-            $this->tipo = "Explosao";
+            $this->setTipo("Explosao");
         }elseif ($tipo === 3) {
-            $this->tipo = "Energia";
+            $this->setTipo("Energia");
         }elseif ($tipo === 4) {
-            $this->tipo = "Bonus";
+            $this->setTipo("Bonus");
         }else {
-
-            $this->tipo = "desconhecido";
+            $this->setTipo("desconhecido");
         }
         $this->skin = $skin;
         $this->proximo = null;
@@ -39,7 +48,22 @@ class Bloco {
     public function setTipo($tipo) {
         
         $this->tipo = $tipo;
+        self::$contagemBlocos["total"]++;
         
+        switch ($tipo) {
+            case 'Energia':
+                self::$contagemBlocos["energia"]++;
+                break;
+            case 'Normal':
+                self::$contagemBlocos["normal"]++;
+                break;
+            case 'Explosao':
+                self::$contagemBlocos["explosivo"]++;
+                break;
+            case 'Bonus':
+                self::$contagemBlocos["pontuacao"]++;
+                break;
+        } 
         
     }
 
@@ -55,6 +79,22 @@ class Bloco {
         $this->proximo = $bloco;
     }
 
+    public function setExplosao() {
+        self::$contagemBlocos["explosao"]++;
+    }
+
+    public function getContagemBlocos() {
+        
+        echo "<br>------------CONATGEM BLOCOS-----------<br>";
+        echo " Total blocos: " . self::$contagemBlocos["total"] ."<br>";
+        echo " blocos energia: " . self::$contagemBlocos["energia"] ."<br>";
+        echo " blocos explosivo: " . self::$contagemBlocos["explosivo"] ."<br>";
+        echo " blocos bonus: " . self::$contagemBlocos["pontuacao"] ."<br>";
+        echo " blocos normal: " . self::$contagemBlocos["normal"] ."<br>";
+        echo " blocos explodidos: " . self::$contagemBlocos["explosao"] ."<br>";
+        echo "-------------------------------------------";
+        //return $this->contagemBlocos;
+    }
 
     public function exibirBlocos() {
         $blocoAtual = $this;

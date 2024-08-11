@@ -27,14 +27,15 @@ class Game {
     private function moverAvatar($pulos) {
         $this->avatar->andar($pulos);
         $this->blocoAtual = $this->avatar->getBlocoAtual();
-        if ($this->blocoAtual !== null) {
+
+        if ($this->blocoAtual !== null) { 
             switch ($this->blocoAtual->getTipo()) {
                 case 'Normal':
                     $this->avatar->setPontuacao($this->avatar->getPontuacao() + 1);
                     break;
                 case 'Explosao':
                     $this->avatar->setVida($this->avatar->getVida() - 1);
-                    
+                    $this->blocoAtual->setExplosao();
                     break;
                 case 'Energia':
                     $this->avatar->setEnergia(true);

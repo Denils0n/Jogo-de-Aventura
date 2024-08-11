@@ -8,6 +8,7 @@
         private $pontuacao;
         private $blocoAtual;
 
+
         public function __construct($nome, $skin) {
             $this->nome = $nome;
             $this->skin = $skin;
@@ -15,6 +16,7 @@
             $this->energia = true; // Valor padrão
             $this->pontuacao = 0; // Valor padrão
             $this->blocoAtual = null;
+            
         }
 
         public function getNome() {
@@ -42,6 +44,7 @@
         }
 
         public function getEnergia() {
+
             return $this->energia;
         }
 
