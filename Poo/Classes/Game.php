@@ -14,6 +14,9 @@ class Game {
         $this->caminho = new Bloco(1, "skin" . rand(1, 4) . ".png");
         $this->blocoAtual = $this->caminho;
         $this->avatar->setBlocoAtual($this->caminho);
+
+        // Inicializa o contador no bloco inicial
+        $this->avatar->incrementarContagem($this->caminho->getTipo());
         
         // Cria blocos iniciais
         $this->caminho->gerarCaminho(5);
@@ -25,6 +28,8 @@ class Game {
     }
 
     private function moverAvatar($pulos) {
+        
+        // Movimentar o avatar pelos blocos
         $this->avatar->andar($pulos);
         $this->blocoAtual = $this->avatar->getBlocoAtual();
 
@@ -35,7 +40,6 @@ class Game {
                     break;
                 case 'Explosao':
                     $this->avatar->setVida($this->avatar->getVida() - 1);
-                    $this->blocoAtual->setExplosao();
                     break;
                 case 'Energia':
                     $this->avatar->setEnergia(true);

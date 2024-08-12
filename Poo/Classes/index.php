@@ -8,8 +8,10 @@ $game = new Game("Denis", "teste.png");
 // Exibe o caminho inicial com blocos
 $game->getCaminho()->exibirBlocos();
 
+
 // Simula pressionar o botão para mover o avatar e gerar novos blocos se necessário
 echo "Bloco atual do Avatar: Tipo: " . $game->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $game->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+echo $game->getAvatar()->getContagemBlocos();
 
 echo "<hr>";
 echo "<br>Movendo 3 posições";
@@ -25,7 +27,7 @@ echo "<hr>";
 $game->getCaminho()->exibirBlocos();
 
 
-echo $game->getAvatar()->getBlocoAtual()->getContagemBlocos();
+echo $game->getAvatar()->getContagemBlocos();
 
 
 ?>
