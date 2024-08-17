@@ -1,6 +1,8 @@
 const play = () =>{
     let box = document.getElementById('container-btn');
-    let playBox = document.getElementById('container-play');
+    let playBox = document.getElementById('container-name-skin');
+    let sound = document.getElementById('buttonSound');
+    sound.play();
     box.style.transition = " transform 1s ease";
     let saveScale = box.style.transform = "scale(0.1)";
     if(saveScale == "scale(0.1)"){
@@ -17,7 +19,8 @@ const play = () =>{
 const rank = () =>{
     let box = document.getElementById('container-btn');
     let rankBox = document.getElementById('container-rank')
-    
+    let sound = document.getElementById('buttonSound');
+    sound.play();
     box.style.transition = " transform 1s ease";
     let saveScale = box.style.transform = "scale(0.1)";
     if(saveScale == "scale(0.1)"){
@@ -41,19 +44,19 @@ const rank = () =>{
     })
 }
 const goBack = () =>{
-    let box = document.getElementById('container-play');
+    let box = document.getElementById('container-name-skin');
     let playBox = document.getElementById('container-btn');
-    box.style.transition = " transform 1s ease";
+    box.style.transition = "transform 1s ease";
     let saveScale = box.style.transform = "scale(0.1)";
     if(saveScale == "scale(0.1)"){
-        box.style.visibility = "hidden";
         setTimeout (()=>{
+            box.style.visibility = "hidden";
             if (box.style.visibility == "hidden"){
                 playBox.style.visibility = "visible";
                 playBox.style.transition = " transform 1s ease";
                 playBox.style.transform = "scale(1)";
             }
-        },1300)
+        },1000)
     }
 }
 const goBack2 = () =>{
@@ -73,13 +76,4 @@ const goBack2 = () =>{
     rank.addEventListener('animationend',()=>{
         btnGoBack2.style.display = "none";
     })
-}
-const easyBtn = () =>{
-
-}
-const mediumBtn = () =>{
-
-}
-const hardBtn = () =>{
-    
 }
