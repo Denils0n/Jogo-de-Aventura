@@ -5,6 +5,16 @@ class Bloco {
     private $skin;
     private $proximo;
 
+    private static $contagemBlocos = array(
+        "blocosEnergia" => 0,
+        "blocosPontuacao" => 0,
+        "blocosExplosivos" => 0,
+        "blocosExplodidos" => 0,
+        "blocosNormais" => 0,
+        "todosBlocosGerados" => 0,
+        "todosBlocosSorteados" => 0
+    );
+
 
     // Construtor
     public function __construct($tipo, $skin) {
@@ -36,8 +46,30 @@ class Bloco {
         return $this->proximo;
     }
 
-    public function setTipo($tipo) {        
-        $this->tipo = $tipo;        
+    public function setTipo($tipo) {
+
+        self::$contagemBlocos["todosBlocosGerados"]++;
+        $this->tipo = $tipo;
+    }
+    
+    public function setContagemBlocos($tipo) {
+        
+        self::$contagemBlocos["todosBlocosSorteados"]++;
+        
+        switch ($tipo) {
+            case 'Energia':
+                self::$contagemBlocos["blocosEnergia"]++;
+                break;
+            case 'Normal':
+                self::$contagemBlocos["blocosNormais"]++;
+                break;
+            case 'Explosao':
+                self::$contagemBlocos["blocosExplosivos"]++;
+                break;
+            case 'Bonus':
+                self::$contagemBlocos["blocosPontuacao"]++;
+                break;
+        } 
     }
 
     public function setSkin($skin) {
@@ -50,6 +82,24 @@ class Bloco {
 
     public function encadearBloco($bloco) {
         $this->proximo = $bloco;
+    }
+
+    public function setExplosao() {
+        self::$contagemBlocos["blocosExplodidos"]++;
+        self::$contagemBlocos["blocosExplosivos"]--;
+    }
+
+    public function getContagemBlocos() {
+        
+        echo "<br>------------CONATGEM BLOCOS-----------<br>";
+        echo " Tamanho Caminho: " . self::$contagemBlocos["todosBlocosGerados"] ."<br>";
+        echo " Total Blocos Percorridos: " . self::$contagemBlocos["todosBlocosSorteados"] ."<br>";
+        echo " blocos energia: " . self::$contagemBlocos["blocosEnergia"] ."<br>";
+        echo " blocos explosivo: " . self::$contagemBlocos["blocosExplosivos"] ."<br>";
+        echo " blocos bonus: " . self::$contagemBlocos["blocosPontuacao"] ."<br>";
+        echo " blocos normal: " . self::$contagemBlocos["blocosNormais"] ."<br>";
+        echo " blocos explodidos: " . self::$contagemBlocos["blocosExplodidos"] ."<br>";
+        echo "-------------------------------------------";
     }
 
 

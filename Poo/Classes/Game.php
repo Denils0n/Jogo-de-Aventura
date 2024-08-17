@@ -29,27 +29,49 @@ class Game {
 
     private function moverAvatar($pulos) {
         
-        // Movimentar o avatar pelos blocos
-        $this->avatar->andar($pulos);
-        $this->blocoAtual = $this->avatar->getBlocoAtual();
+        if($this->avatar->getVida() <> 0){
 
-        if ($this->blocoAtual !== null) { 
-            switch ($this->blocoAtual->getTipo()) {
-                case 'Normal':
-                    $this->avatar->setPontuacao($this->avatar->getPontuacao() + 1);
-                    break;
-                case 'Explosao':
-                    $this->avatar->setVida($this->avatar->getVida() - 1);
-                    break;
-                case 'Energia':
-                    $this->avatar->setEnergia(true);
-                    break;
-                case 'Bonus':
-                    $this->avatar->setPontuacao($this->avatar->getPontuacao() + 2);
-                    break;
-            }
+            $this->avatar->andar($pulos);
+            $this->blocoAtual = $this->avatar->getBlocoAtual();
+            $this->avatar->setPontuacao(1);
+            
+            if ($this->blocoAtual !== null) { 
+                
+                echo "<b>". $this->blocoAtual->getTipo() ."</b><br>" ;
+                $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo());
+    
+                switch ($this->blocoAtual->getTipo()) {
+                    case 'Normal':
+                        $this->avatar->setPontuacao(1);
+                        break;
+                    case 'Explosao':
+                        $this->avatar->setVida($this->avatar->getVida() - 1);
+                        $this->blocoAtual->setExplosao();
+                        $this->avatar->setPontuacao(-1);
+                        break;
+                    case 'Energia':
+                        $this->avatar->setEnergia(true);
+                        $this->avatar->setPontuacao(1);
+                        break;
+                    case 'Bonus':
+                        $this->avatar->setPontuacao(2);
+                        break;
+                }
+            } 
+            $this->caminho->gerarCaminho($pulos);
+            $this->getCaminho()->exibirBlocos(); 
+            echo "Bloco atual do Avatar: Tipo: " . $this->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $this->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+            echo "Vida " . $this->getAvatar()->getVida() . "<br>";
+            echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
+
+
+        }else{
+            echo "Fim de Jogo<br>";
+            echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
+            echo $this->avatar->getPontuacao();
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
         }
-        $this->caminho->gerarCaminho($pulos);
     }
 
     private function gerarBlocoSeNecessario() {

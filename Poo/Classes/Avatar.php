@@ -20,9 +20,9 @@
         public function __construct($nome, $skin) {
             $this->nome = $nome;
             $this->skin = $skin;
-            $this->vida = 3; // Valor padrão
-            $this->energia = true; // Valor padrão
-            $this->pontuacao = 0; // Valor padrão
+            $this->vida = 3; 
+            $this->energia = true; 
+            $this->pontuacao = 1; // contando a primeira posição
             $this->blocoAtual = null;
             
         }
@@ -65,7 +65,7 @@
         }
 
         public function setPontuacao($pontuacao) {
-            $this->pontuacao = $pontuacao;
+            $this->pontuacao = $this->pontuacao + $pontuacao;
         }
 
         public function getBlocoAtual() {
@@ -82,8 +82,10 @@
                     $proximoBloco = $this->blocoAtual->getProximo();
                     if ($proximoBloco !== null) {
                         $this->blocoAtual = $proximoBloco;   
-                        
-                        
+                        if($i == $pulos) {
+                            echo "<i>localPulo:</i>". $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo()) ."<br>";
+                            $this->setPontuacao(1);
+                        }                        
                     } else {
                         break;
                     }
