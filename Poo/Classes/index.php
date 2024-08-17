@@ -11,13 +11,18 @@ $game->getCaminho()->exibirBlocos();
 echo "Vida " . $game->getAvatar()->getVida() . "<br>";
 echo "<hr>";
 
-$arrayPulos = [3,1,1,3,2];
+$arrayPulos = [1,2,1,1,2,1,2];
 for( $i = 0; $i < count($arrayPulos); $i++ ) {
-
+    
     echo "<br> Salto: ". $i ;
-    echo "<br> Pulos: ". $arrayPulos[$i] ."<br>";
-
-    $game->mover($arrayPulos[$i]);
+    
+    if($game->getAvatar()->getEnergia() > 1){
+        echo "<br> Pulos: 3<br>";
+        $game->mover(3);
+    }else{
+        echo "<br> Pulos: ". $arrayPulos[$i] ."<br>";
+        $game->mover($arrayPulos[$i]);
+    }
     echo "<hr>";
 
 }

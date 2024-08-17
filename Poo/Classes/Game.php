@@ -50,7 +50,7 @@ class Game {
                         $this->avatar->setPontuacao(-1);
                         break;
                     case 'Energia':
-                        $this->avatar->setEnergia(true);
+                        $this->avatar->setEnergia(1);
                         $this->avatar->setPontuacao(1);
                         break;
                     case 'Bonus':

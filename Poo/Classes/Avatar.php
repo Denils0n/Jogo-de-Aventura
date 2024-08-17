@@ -57,7 +57,7 @@
         }
 
         public function setEnergia($energia) {
-            $this->energia = $energia;
+            $this->energia = $this->energia + $energia;
         }
 
         public function getPontuacao() {
@@ -82,8 +82,11 @@
                     $proximoBloco = $this->blocoAtual->getProximo();
                     if ($proximoBloco !== null) {
                         $this->blocoAtual = $proximoBloco;   
-                        if($i == $pulos) {
-                            echo "<i>localPulo:</i>". $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo()) ."<br>";
+                        if($i == $pulos -1) {
+                            if($this->getEnergia() > 1){
+                                $this->setEnergia(-1);
+                            }
+                            //echo "<i>localPulo:". $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo()) ."</i><br>";
                             $this->setPontuacao(1);
                         }                        
                     } else {
