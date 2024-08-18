@@ -103,13 +103,27 @@ class Bloco {
     }
 
 
+    // public function exibirBlocos() {
+    //     $blocoAtual = $this;
+    //     while ($blocoAtual !== null) {
+    //         echo "Tipo: " . $blocoAtual->getTipo() . ", Skin: " . $blocoAtual->getSkin() . "<br>";
+    //         $blocoAtual = $blocoAtual->getProximo();
+    //     }
+    // }
+
+
     public function exibirBlocos() {
         $blocoAtual = $this;
+        $blocos = []; // Array para armazenar os blocos
+    
         while ($blocoAtual !== null) {
-            echo "Tipo: " . $blocoAtual->getTipo() . ", Skin: " . $blocoAtual->getSkin() . "<br>";
-            $blocoAtual = $blocoAtual->getProximo();
+            $blocos[] = $blocoAtual; // Adiciona o bloco atual ao array
+            $blocoAtual = $blocoAtual->getProximo(); // Move para o próximo bloco
         }
+    
+        return $blocos; // Retorna o array de blocos
     }
+
 
     // Modificado para adicionar blocos sem limpar a cadeia existente
     public function gerarCaminho($quantidade) {

@@ -1,3 +1,18 @@
+<?php
+session_start();
+$name = $_POST['name'];
+$skin = $_POST['skin'];
+
+//echo $name . $skin;
+
+require_once '../Poo/Classes/Game.php';
+
+$game = new Game($name, $skin);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,7 +35,26 @@
                 <div class="container-characters">
                     <?php
                         //alterar depois
-                        echo '<div class="character">oiiiii</div>'
+                        //echo ($game->getAvatar()->getNome());
+                        
+                        
+                        //editar aqui layrton!!
+                        // echo "<div style=\"background-image:url('../Imagens/Personagem/" . $game->getAvatar()->getSkin() . "'); width:100px; height:100px;\">";
+                        // echo "</div>";
+
+                        echo $game->getAvatar()->getVida();
+                        $a = $game->getCaminho()->exibirBlocos();
+
+                        for ($i = 0; $i < count($a); $i++) { 
+                            echo $a[$i]->getTipo();
+                            echo $a[$i]->getSkin();
+                            
+                        }
+
+                        
+
+                        
+
                     ?>
                     <div class="floor"></div>
                 </div>
