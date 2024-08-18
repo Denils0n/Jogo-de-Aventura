@@ -1,3 +1,19 @@
+<?php
+session_start();
+$name = $_POST['name'];
+$skin = $_POST['skin'];
+$nivel = $_POST['nivel'];
+
+//echo $name . $skin;
+
+require_once '../Poo/Classes/Game.php';
+
+$game = new Game($name, $skin);
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

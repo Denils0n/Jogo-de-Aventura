@@ -2,6 +2,7 @@
 session_start();
 $name = $_POST['name'];
 $skin = $_POST['skin'];
+$nivel = $_POST['nivel'];
 
 //echo $name . $skin;
 
