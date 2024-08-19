@@ -1,5 +1,4 @@
 <?php
-
 class Bloco {
     private $tipo;
     private $skin;
@@ -17,19 +16,31 @@ class Bloco {
 
 
     // Construtor
-    public function __construct($tipo, $skin) {
+    public function __construct($tipo) {
         if ($tipo === 1) {
             $this->setTipo("Normal");
+            $sking_caminho = "../../Imagens/Plataforma/Piso_normal.png";
+            $this->skin = $sking_caminho;
         }elseif ($tipo === 2) {
             $this->setTipo("Explosao");
+            $sking_caminho = "../../Imagens/Plataforma/Piso_bomba.png";
+            $this->skin = $sking_caminho;
+        
         }elseif ($tipo === 3) {
             $this->setTipo("Energia");
+            $sking_caminho = "../../Imagens/Plataforma/Piso_raio.png";
+            $this->skin = $sking_caminho;
+        
         }elseif ($tipo === 4) {
             $this->setTipo("Bonus");
+            $sking_caminho = "../../Imagens/Plataforma/Piso_bonus.png";
+            $this->skin = $sking_caminho;
+        
         }else {
             $this->setTipo("desconhecido");
         }
-        $this->skin = $skin;
+
+
         $this->proximo = null;
     }
 
@@ -108,22 +119,25 @@ class Bloco {
         //return self::$contagemBlocos;
     }
 
+
     public function getContagemCaminho() {
         return self::$contagemBlocos["todosBlocosGerados"];
     }
 
 
 
+
     public function exibirBlocos() {
         $blocoAtual = $this;
-        $blocos = []; // Array para armazenar os blocos
+        $html = ""; // String para armazenar o HTML gerado
     
         while ($blocoAtual !== null) {
-            $blocos[] = $blocoAtual; // Adiciona o bloco atual ao array
+            // Adiciona a imagem do bloco ao HTML
+            $html .= '<img src="' . $blocoAtual->skin . '" alt="' . $blocoAtual->tipo . '">';
             $blocoAtual = $blocoAtual->getProximo(); // Move para o próximo bloco
         }
     
-        return $blocos; // Retorna o array de blocos
+        echo $html; // Exibe o HTML gerado
     }
 
 
@@ -137,8 +151,7 @@ class Bloco {
         // Adiciona novos blocos ao final da cadeia
         for ($i = 0; $i < $quantidade; $i++) {
             $tipo = $this->sorteio();
-            $skin = "skin" . rand(1, 4) . ".png";
-            $novoBloco = new Bloco($tipo, $skin);
+            $novoBloco = new Bloco($tipo);
             $blocoAtual->encadearBloco($novoBloco);
             $blocoAtual = $novoBloco;
         }
