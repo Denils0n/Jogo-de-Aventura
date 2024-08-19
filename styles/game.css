@@ -22,6 +22,16 @@
 .cloud-2 {
     left: 100%;
 }
+.container-life{
+    width: 100%;
+    height: 40px;
+    /* background-color: green; */
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
 .container-characters{
     width: 100%;
     height: 100%;
@@ -31,15 +41,17 @@
     /* background-color: red; */
 }
 .character{
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     margin-bottom: 0px;
-    background-color: blue;
+    background-size: 100% 100%;
+    grid-column: 1;
+    /* background-color: blue; */
 }
 .floor{
     width: 100%;
-    height: 100px;
-    /* background-color: brown; */
+    height: 80px;
+    background-color: brown;
 }
 @keyframes nuvem {
     0% {
@@ -65,4 +77,45 @@
     overflow: hidden;
     background-image: url('../Imagens/Fundo/Dificil/Sem_nuvem.png');
     background-size: 100% 100%;
+}
+.box-character{
+    width: 220px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center; 
+    /* background-color: aqua; */
+}
+.container-btn-game{
+    position: relative;
+    right: 5px;
+}
+.jump {
+    width: 90px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    grid-column: 1;
+}
+  
+.jump:nth-child(1) {
+    background-image: url('../Imagens/Botoes/Andar/3_pulos_nao_ativo_teste.png');
+    background-size: 100% 100%;
+}
+.jump:nth-child(2) {
+    background-image: url('../Imagens/Botoes/Andar/2_pulo_teste.png');
+    background-size: 100% 100%;
+}
+.jump:nth-child(3) {
+    background-image: url('../Imagens/Botoes/Andar/1_pulo_teste.png');
+    background-size: 100% 100%;
+}
+.jump:nth-child(1):active{
+    transform: scale(0.9);
+}
+.jump:nth-child(2):active{
+    transform: scale(0.9);
+}
+.jump:nth-child(3):active{
+    transform: scale(0.9);
 }
