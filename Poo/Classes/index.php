@@ -3,7 +3,7 @@
 require_once "Game.php";
 
 // Cria um novo jogo com o avatar
-$game = new Game("Denis", "teste.png");
+$game = new Game("Denis", "teste.png", 1);
 
 // Exibe o caminho inicial com blocos
 $game->getCaminho()->exibirBlocos();

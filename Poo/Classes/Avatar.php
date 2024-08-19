@@ -76,6 +76,7 @@
             $this->blocoAtual = $blocoAtual;
         }
 
+
         public function andar($pulos) {
             for ($i = 0; $i < $pulos; $i++) {
                 if ($this->blocoAtual !== null) {
@@ -98,18 +99,6 @@
             $this->incrementarContagem($this->blocoAtual->getTipo());
         }
     
-        public function getContagemBlocos() {
-
-            echo "<br>-------------------------------CONTAGEM BLOCOS----------------------------------";
-            echo "<br>Normal: " . $this->contagemBlocos["Normal"];
-            echo "<br>Explosivo: " . $this->contagemBlocos["Explosivo"];
-            echo "<br>Energia: " . $this->contagemBlocos["Energia"];
-            echo "<br>Bonus: " . $this->contagemBlocos["Bonus"];
-            echo "<br>Explosao: " . $this->contagemBlocos["Explosao"] . "<br>";
-            echo "--------------------------------------------------------------------------------<br>";
-
-            //return var_dump($this->contagemBlocos);
-        }
     
         public function incrementarContagem($tipo) {
             switch ($tipo) {

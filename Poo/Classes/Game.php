@@ -7,9 +7,11 @@ class Game {
     private $avatar;
     private $caminho;
     private $blocoAtual;
+    private $nivel;
 
-    public function __construct($nomeAvatar, $skinAvatar) {
+    public function __construct($nomeAvatar, $skinAvatar, $nivel) {
         $this->avatar = new Avatar($nomeAvatar, $skinAvatar);
+        $this->nivel = $nivel;
 
         $this->caminho = new Bloco(1, "skin" . rand(1, 4) . ".png");
         $this->blocoAtual = $this->caminho;
@@ -23,6 +25,7 @@ class Game {
     }
 
     public function mover($pulos) {
+        //echo "<br>Tamanho caminho:".$this->avatar->getBlocoAtual()->getContagemCaminho() ."<br>";
         $this->moverAvatar($pulos);
         $this->gerarBlocoSeNecessario();
     }
@@ -71,6 +74,8 @@ class Game {
             echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
             echo $this->avatar->getPontuacao();
             echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
+            $this->getAvatar()->getBlocoAtual()->finalizarNivel($this->getAvatar()->getNome(),$this->nivel);
+            echo "<br>".var_dump($this->getAvatar()->getBlocoAtual()->getScore($this->getAvatar()->getNome(),$this->nivel))."<br>";
         }
     }
 
@@ -104,6 +109,7 @@ class Game {
         return $this->caminho;
     }
 
+    
 
     
 }
