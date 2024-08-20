@@ -42,6 +42,7 @@ $game = new Game($name, $skin,$nivel);
                                 echo '<image id="life-'.$i.'" src="../Imagens/Coracao/1_coracao_cheio_cut.png"/>';
                             }
                         ?>
+                        
                     </div>
                     <?php
                         //alterar depois
@@ -72,6 +73,7 @@ $game = new Game($name, $skin,$nivel);
                             <button class="jump" on></button>
                             <button class="jump"></button>
                             <button class="jump"></button>
+                            
                         </div>
                     </div>
                     <div class="floor">
@@ -79,9 +81,8 @@ $game = new Game($name, $skin,$nivel);
                             $a = $game->getCaminho()->exibirBlocos();
 
                             for ($i = 0; $i < count($a); $i++) { 
-                                echo $a[$i]->getTipo();
-                                echo $a[$i]->getSkin()." ";
                                 
+                                echo '<img src="' . $a[$i]->getSkin() . '" alt="' . $a[$i]->getTipo() . '">';
                             }
 
                             // for ($i = 0; $i < count($a); $i++) { 
@@ -92,6 +93,10 @@ $game = new Game($name, $skin,$nivel);
                 </div>
             </div>
         </div>
+        
     </div>
+
+
+
 </body>
 </html>

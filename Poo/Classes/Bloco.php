@@ -3,6 +3,7 @@ class Bloco {
     private $tipo;
     private $skin;
     private $proximo;
+    private $nivel;
 
     private static $contagemBlocos = array(
         "blocosEnergia" => 0,
@@ -13,10 +14,13 @@ class Bloco {
         "todosBlocosGerados" => 0,
         "todosBlocosSorteados" => 0
     );
-
+ 
 
     // Construtor
-    public function __construct($tipo) {
+    public function __construct($tipo, $nivel) {
+
+        $this->nivel = $nivel;
+
         if ($tipo === 1) {
             $this->setTipo("Normal");
             $sking_caminho = "../../Imagens/Plataforma/Piso_normal.png";
@@ -56,6 +60,7 @@ class Bloco {
     public function getProximo() {
         return $this->proximo;
     }
+
 
     public function setTipo($tipo) {
 
@@ -100,10 +105,6 @@ class Bloco {
         self::$contagemBlocos["blocosExplosivos"]--;
     }
 
-    public function getArray(){
-        return self::$contagemBlocos;
-    }
-
     public function getContagemBlocos() {
         
         echo "<br>------------CONATGEM BLOCOS-----------<br>";
@@ -115,30 +116,51 @@ class Bloco {
         echo " blocos normal: " . self::$contagemBlocos["blocosNormais"] ."<br>";
         echo " blocos explodidos: " . self::$contagemBlocos["blocosExplodidos"] ."<br>";
         echo "-------------------------------------------";
-
-        //return self::$contagemBlocos;
+<<<<<<< Updated upstream
     }
 
 
-    public function getContagemCaminho() {
-        return self::$contagemBlocos["todosBlocosGerados"];
+    // public function exibirBlocos() {
+    //     $blocoAtual = $this;
+    //     while ($blocoAtual !== null) {
+    //         echo "Tipo: " . $blocoAtual->getTipo() . ", Skin: " . $blocoAtual->getSkin() . "<br>";
+    //         $blocoAtual = $blocoAtual->getProximo();
+    //     }
+    // }
+
+
+=======
+
     }
 
-
-
-
+>>>>>>> Stashed changes
     public function exibirBlocos() {
         $blocoAtual = $this;
-        $html = ""; // String para armazenar o HTML gerado
+        $blocos = []; // Array para armazenar os blocos
     
         while ($blocoAtual !== null) {
-            // Adiciona a imagem do bloco ao HTML
-            $html .= '<img src="' . $blocoAtual->skin . '" alt="' . $blocoAtual->tipo . '">';
+            $blocos[] = $blocoAtual; // Adiciona o bloco atual ao array
             $blocoAtual = $blocoAtual->getProximo(); // Move para o próximo bloco
         }
     
-        echo $html; // Exibe o HTML gerado
+        return $blocos; // Retorna o array de blocos
     }
+
+    
+
+    
+    // public function exibirBlocos() {
+    //     $blocoAtual = $this;
+    //     $html = ""; // String para armazenar o HTML gerado
+    
+    //     while ($blocoAtual !== null) {
+    //         // Adiciona a imagem do bloco ao HTML
+    //         $html .= '<img src="' . $blocoAtual->skin . '" alt="' . $blocoAtual->tipo . '">';
+    //         $blocoAtual = $blocoAtual->getProximo(); // Move para o próximo bloco
+    //     }
+    
+    //     echo $html; // Exibe o HTML gerado
+    // }
 
 
     // Modificado para adicionar blocos sem limpar a cadeia existente
@@ -151,7 +173,7 @@ class Bloco {
         // Adiciona novos blocos ao final da cadeia
         for ($i = 0; $i < $quantidade; $i++) {
             $tipo = $this->sorteio();
-            $novoBloco = new Bloco($tipo);
+            $novoBloco = new Bloco($tipo, $this->getSkin(), $this->nivel);
             $blocoAtual->encadearBloco($novoBloco);
             $blocoAtual = $novoBloco;
         }
@@ -159,8 +181,8 @@ class Bloco {
 
     private function sorteio() {
         
-        return 2;
-        /* $d= rand(1, 100);
+<<<<<<< Updated upstream
+        $d= rand(1, 100);
 
         if ($d <= 50) {
             return 1;
@@ -170,53 +192,44 @@ class Bloco {
             return 3;
         }elseif ($d > 90 && $d <= 100) {
             return 4;
-        } */
-
-
-    }
-
-
-    public function finalizarNivel($nome, $nivel) {
-
-        $nomeArquivo = "./Niveis/{$nome}_{$nivel}.csv";
-        $arquivo = fopen($nomeArquivo, 'w');
-
-        foreach (self::$contagemBlocos as $chave=>$valor) {
-
-            fputcsv($arquivo, [$chave, $valor]);
         }
+=======
+        //return 2;
+        $d= rand(1, 100);
 
-        fputcsv($arquivo, ["-------------------------------------------"]);
-        fclose($arquivo);
-
-    }
-
-    public function getScore($nome, $nivel){
-
-        $nomeArquivo = "./Niveis/{$nome}_{$nivel}.csv";
-
-        if (!file_exists($nomeArquivo)) {
-            return "Arquivo não encontrado: {$nomeArquivo}";
-        }
-
-        $arquivo = fopen($nomeArquivo, 'r');
-
-        while (($linha = fgetcsv($arquivo)) !== false) {
-            if ($linha[0] === "-------------------------------------------") {
-                continue;
+        if($this->nivel == 3){
+        
+            if ($d <= 50) {
+                return 1;
+            }elseif ($d > 50 && $d <= 60) {
+                return 4;
+            }elseif ($d > 60 && $d <= 70) {
+                return 3;
+            }elseif ($d > 70 && $d <= 100) {
+                return 2;
             }
 
-            $dados[$linha[0]] = $linha[1];
-        }
+        } else {
 
-        fclose($arquivo);
-        return $dados;
+            if ($d <= 50) {
+                return 1;
+            }elseif ($d > 50 && $d <= 80) {
+                return 2;
+            }elseif ($d > 80 && $d <= 90) {
+                return 3;
+            }elseif ($d > 90 && $d <= 100) {
+                return 4;
+            }
+            
+        }
+        
+>>>>>>> Stashed changes
+
 
     }
 
+
 }
-
-
 
 
 ?>

@@ -23,8 +23,7 @@
             $this->vida = 3; 
             $this->energia = true; 
             $this->pontuacao = 1; // contando a primeira posição
-            $this->blocoAtual = null;
-            
+            $this->blocoAtual = null;            
         }
 
         public function getNome() {
@@ -87,7 +86,6 @@
                             if($this->getEnergia() > 1){
                                 $this->setEnergia(-1);
                             }
-                            //echo "<i>localPulo:". $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo()) ."</i><br>";
                             $this->setPontuacao(1);
                         }                        
                     } else {
