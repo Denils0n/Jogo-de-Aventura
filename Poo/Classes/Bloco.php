@@ -23,21 +23,21 @@ class Bloco {
 
         if ($tipo === 1) {
             $this->setTipo("Normal");
-            $sking_caminho = "../../Imagens/Plataforma/Piso_normal.png";
+            $sking_caminho = "../../Imagens/Plataforma/Piso_normal_teste.png";
             $this->skin = $sking_caminho;
         }elseif ($tipo === 2) {
             $this->setTipo("Explosao");
-            $sking_caminho = "../../Imagens/Plataforma/Piso_bomba.png";
+            $sking_caminho = "../../Imagens/Plataforma/Piso_bomba_teste.png";
             $this->skin = $sking_caminho;
         
         }elseif ($tipo === 3) {
             $this->setTipo("Energia");
-            $sking_caminho = "../../Imagens/Plataforma/Piso_raio.png";
+            $sking_caminho = "../../Imagens/Plataforma/Piso_raio_teste.png";
             $this->skin = $sking_caminho;
         
         }elseif ($tipo === 4) {
             $this->setTipo("Bonus");
-            $sking_caminho = "../../Imagens/Plataforma/Piso_bonus.png";
+            $sking_caminho = "../../Imagens/Plataforma/Piso_bonus_teste.png";
             $this->skin = $sking_caminho;
         
         }else {

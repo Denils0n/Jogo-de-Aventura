@@ -4,12 +4,18 @@ $name = $_POST['name'];
 $skin = $_POST['skin'];
 $nivel = $_POST['nivel'];
 
+
 //echo $name . $skin;
 
 require_once '../Poo/Classes/Game.php';
 
-$game = new Game($name, $skin,$nivel);
+// require_once '../endpoint/mover.php';
 
+$game = new Game($name, $skin,$nivel);
+$_SESSION['game'] = $game;
+// $game->mover();
+
+// echo error_log(var_export($_SESSION, true));
 
 ?>
 
@@ -22,10 +28,16 @@ $game = new Game($name, $skin,$nivel);
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/game.css">
+    <script src="../script/game.js" defer></script>
     <title>Game</title>
 </head>
 <body>
     <div class="container">
+        <!-- <div>
+            <?php 
+                // var_dump($game->getAvatar()->getNome());
+            ?>
+        </div> -->
         <h1>history linked list</h1>
         <div class="container-box-game">
             <div class="screen-game">
@@ -53,7 +65,7 @@ $game = new Game($name, $skin,$nivel);
                         // echo "<div style=\"background-image:url('../Imagens/Personagem/" . $game->getAvatar()->getSkin() . "'); width:100px; height:100px;\">";
                         // echo "</div>";
 
-                        echo $game->getAvatar()->getVida();
+                        // echo $game->getAvatar()->getVida();
                         // $a = $game->getCaminho()->exibirBlocos();
 
                         // for ($i = 0; $i < count($a); $i++) { 
@@ -68,12 +80,22 @@ $game = new Game($name, $skin,$nivel);
                             echo "<div class='character' style=\"background-image:url('../Imagens/Personagem/" . $game->getAvatar()->getSkin() . "');\"></div>";
                             // echo "<div class='character' style='background-image: url('../Imagens/Personagem/".$game->getAvatar()->getSkin().");'></div>";
                             // echo "../imagens/personagem/".$game->getAvatar()->getSkin();
+                            // echo $game->getAvatar()->getBlocoAtual();
                         ?>
                         <div class="container-btn-game">
+<<<<<<< Updated upstream
                             <button class="jump" on></button>
                             <button class="jump"></button>
                             <button class="jump"></button>
                             
+=======
+                            <button class="jump" onclick="simpleJump_3()"></button>
+                            <button class="jump" onclick="simpleJump_2()"></button>
+                            <?php
+                                
+                            ?>
+                            <button class="jump" onclick="simpleJump(1,)"></button>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                     <div class="floor">
@@ -95,8 +117,12 @@ $game = new Game($name, $skin,$nivel);
         </div>
         
     </div>
+<<<<<<< Updated upstream
 
 
 
+=======
+    <!-- <script src="../script/game.js"></script> -->
+>>>>>>> Stashed changes
 </body>
 </html>
