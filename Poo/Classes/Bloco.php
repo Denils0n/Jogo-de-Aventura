@@ -116,7 +116,7 @@ class Bloco {
         echo " blocos normal: " . self::$contagemBlocos["blocosNormais"] ."<br>";
         echo " blocos explodidos: " . self::$contagemBlocos["blocosExplodidos"] ."<br>";
         echo "-------------------------------------------";
-<<<<<<< Updated upstream
+
     }
 
 
@@ -129,11 +129,7 @@ class Bloco {
     // }
 
 
-=======
 
-    }
-
->>>>>>> Stashed changes
     public function exibirBlocos() {
         $blocoAtual = $this;
         $blocos = []; // Array para armazenar os blocos
@@ -181,20 +177,6 @@ class Bloco {
 
     private function sorteio() {
         
-<<<<<<< Updated upstream
-        $d= rand(1, 100);
-
-        if ($d <= 50) {
-            return 1;
-        }elseif ($d > 50 && $d <= 80) {
-            return 2;
-        }elseif ($d > 80 && $d <= 90) {
-            return 3;
-        }elseif ($d > 90 && $d <= 100) {
-            return 4;
-        }
-=======
-        //return 2;
         $d= rand(1, 100);
 
         if($this->nivel == 3){
@@ -223,7 +205,6 @@ class Bloco {
             
         }
         
->>>>>>> Stashed changes
 
 
     }

@@ -54,6 +54,7 @@ $_SESSION['game'] = $game;
                                 echo '<image id="life-'.$i.'" src="../Imagens/Coracao/1_coracao_cheio_cut.png"/>';
                             }
                         ?>
+                        
                     </div>
                     <?php
                         //alterar depois
@@ -88,6 +89,7 @@ $_SESSION['game'] = $game;
                                 
                             ?>
                             <button class="jump" onclick="simpleJump(1,)"></button>
+
                         </div>
                     </div>
                     <div class="floor">
@@ -95,9 +97,8 @@ $_SESSION['game'] = $game;
                             $a = $game->getCaminho()->exibirBlocos();
 
                             for ($i = 0; $i < count($a); $i++) { 
-                                echo $a[$i]->getTipo();
-                                echo $a[$i]->getSkin()." ";
                                 
+                                echo '<img src="' . $a[$i]->getSkin() . '" alt="' . $a[$i]->getTipo() . '">';
                             }
 
                             // for ($i = 0; $i < count($a); $i++) { 
@@ -108,7 +109,9 @@ $_SESSION['game'] = $game;
                 </div>
             </div>
         </div>
+        
     </div>
+
     <!-- <script src="../script/game.js"></script> -->
 </body>
 </html>

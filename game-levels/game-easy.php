@@ -83,19 +83,13 @@ $_SESSION['game'] = $game;
                             // echo $game->getAvatar()->getBlocoAtual();
                         ?>
                         <div class="container-btn-game">
-<<<<<<< Updated upstream
-                            <button class="jump" on></button>
-                            <button class="jump"></button>
-                            <button class="jump"></button>
-                            
-=======
                             <button class="jump" onclick="simpleJump_3()"></button>
                             <button class="jump" onclick="simpleJump_2()"></button>
                             <?php
                                 
                             ?>
                             <button class="jump" onclick="simpleJump(1,)"></button>
->>>>>>> Stashed changes
+
                         </div>
                     </div>
                     <div class="floor">
@@ -117,12 +111,7 @@ $_SESSION['game'] = $game;
         </div>
         
     </div>
-<<<<<<< Updated upstream
 
-
-
-=======
     <!-- <script src="../script/game.js"></script> -->
->>>>>>> Stashed changes
 </body>
 </html>

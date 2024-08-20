@@ -72,19 +72,19 @@ class Game {
             $this->caminho->gerarCaminho($pulos);
             $this->getCaminho()->exibirBlocos(); 
 
-            /* echo "Bloco atual do Avatar: Tipo: " . $this->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $this->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+            echo "Bloco atual do Avatar: Tipo: " . $this->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $this->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
             echo "Vida " . $this->getAvatar()->getVida() . "<br>";
             echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
-            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao(); */
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
 
 
         }else{
             
-            /* echo "Fim de Jogo<br>";
+            echo "Fim de Jogo<br>";
             echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
             echo $this->avatar->getPontuacao();
-            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao(); */
-            /* echo "<br>".var_dump($this->getAvatar()->getBlocoAtual()->getScore($this->getAvatar()->getNome(),$this->nivel))."<br>"; */
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
+            echo "<br>".var_dump($this->getAvatar()->getBlocoAtual()->getScore($this->getAvatar()->getNome(),$this->nivel))."<br>";
 
             $this->getAvatar()->getBlocoAtual()->finalizarNivel($this->getAvatar()->getNome(),$this->nivel);
             $this->setStatus(false);
