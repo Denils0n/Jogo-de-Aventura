@@ -8,12 +8,21 @@ class Game {
     private $caminho;
     private $blocoAtual;
     private $nivel;
+    private $status;
 
+ 
     public function __construct($nomeAvatar, $skinAvatar, $nivel) {
         $this->avatar = new Avatar($nomeAvatar, $skinAvatar);
         $this->nivel = $nivel;
+        $this->status = true;
 
-        $this->caminho = new Bloco(1, "skin" . rand(1, 4) . ".png");
+        if($nivel == 2){
+            $this->avatar->setVida(2);
+        } else if($nivel == 3){
+            $this->avatar->setVida(1);
+        }
+
+        $this->caminho = new Bloco(1, "skin" . rand(1, 4) . ".png", $this->nivel);
         $this->blocoAtual = $this->caminho;
         $this->avatar->setBlocoAtual($this->caminho);
 
@@ -25,7 +34,6 @@ class Game {
     }
 
     public function mover($pulos) {
-        //echo "<br>Tamanho caminho:".$this->avatar->getBlocoAtual()->getContagemCaminho() ."<br>";
         $this->moverAvatar($pulos);
         $this->gerarBlocoSeNecessario();
     }
@@ -40,7 +48,6 @@ class Game {
             
             if ($this->blocoAtual !== null) { 
                 
-                echo "<b>". $this->blocoAtual->getTipo() ."</b><br>" ;
                 $this->blocoAtual->setContagemBlocos($this->blocoAtual->getTipo());
     
                 switch ($this->blocoAtual->getTipo()) {
@@ -61,29 +68,34 @@ class Game {
                         break;
                 }
             } 
+
             $this->caminho->gerarCaminho($pulos);
             $this->getCaminho()->exibirBlocos(); 
-            echo "Bloco atual do Avatar: Tipo: " . $this->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $this->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
+
+            /* echo "Bloco atual do Avatar: Tipo: " . $this->getAvatar()->getBlocoAtual()->getTipo() . ", Skin: " . $this->getAvatar()->getBlocoAtual()->getSkin() . "<br>";
             echo "Vida " . $this->getAvatar()->getVida() . "<br>";
             echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
-            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao(); */
 
 
         }else{
-            echo "Fim de Jogo<br>";
+            
+            /* echo "Fim de Jogo<br>";
             echo $this->getAvatar()->getBlocoAtual()->getContagemBlocos();
             echo $this->avatar->getPontuacao();
-            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao();
+            echo "<br>Pontuação: ".$this->getAvatar()->getPontuacao(); */
+            /* echo "<br>".var_dump($this->getAvatar()->getBlocoAtual()->getScore($this->getAvatar()->getNome(),$this->nivel))."<br>"; */
+
             $this->getAvatar()->getBlocoAtual()->finalizarNivel($this->getAvatar()->getNome(),$this->nivel);
-            echo "<br>".var_dump($this->getAvatar()->getBlocoAtual()->getScore($this->getAvatar()->getNome(),$this->nivel))."<br>";
+            $this->setStatus(false);
         }
-    }
+    }    
 
     private function gerarBlocoSeNecessario() {
         if ($this->avatar->getBlocoAtual() === null) {
             $tipo = sortear();
             $skin = "skin" . $tipo . ".png";
-            $novoBloco = new Bloco($tipo, $skin);
+            $novoBloco = new Bloco($tipo, $skin, $this->nivel);
             $this->adicionarBloco($novoBloco);
             $this->avatar->setBlocoAtual($novoBloco);
         }
@@ -109,8 +121,13 @@ class Game {
         return $this->caminho;
     }
 
+    public function getStatus(){
+        return $this->status;
+    }
     
-
+    public function setStatus($status){
+        $this->status = $status;
+    }
     
 }
 ?>

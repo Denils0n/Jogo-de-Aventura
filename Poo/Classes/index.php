@@ -10,20 +10,22 @@ $game->getCaminho()->exibirBlocos();
 
 echo "Vida " . $game->getAvatar()->getVida() . "<br>";
 echo "<hr>";
-
-$arrayPulos = [1,2,1,1,2,1,2];
+ 
+$arrayPulos = [1,2,1,1,2,1,2,2,1];
 for( $i = 0; $i < count($arrayPulos); $i++ ) {
     
-    echo "<br> Salto: ". $i ;
-    
-    if($game->getAvatar()->getEnergia() > 1){
-        echo "<br> Pulos: 3<br>";
-        $game->mover(3);
-    }else{
-        echo "<br> Pulos: ". $arrayPulos[$i] ."<br>";
-        $game->mover($arrayPulos[$i]);
+    if($game->getStatus()){
+        echo "<br> Salto: ". $i ;
+        
+        if($game->getAvatar()->getEnergia() > 1){
+            echo "<br> Pulos: 3<br>";
+            $game->mover(3);
+        }else{
+            echo "<br> Pulos: ". $arrayPulos[$i] ."<br>";
+            $game->mover($arrayPulos[$i]);
+        }
+        echo "<hr>";
     }
-    echo "<hr>";
 
 }
 

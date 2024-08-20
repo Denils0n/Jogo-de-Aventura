@@ -3,6 +3,7 @@ class Bloco {
     private $tipo;
     private $skin;
     private $proximo;
+    private $nivel;
 
     private static $contagemBlocos = array(
         "blocosEnergia" => 0,
@@ -13,10 +14,13 @@ class Bloco {
         "todosBlocosGerados" => 0,
         "todosBlocosSorteados" => 0
     );
-
+ 
 
     // Construtor
-    public function __construct($tipo) {
+    public function __construct($tipo, $nivel) {
+
+        $this->nivel = $nivel;
+
         if ($tipo === 1) {
             $this->setTipo("Normal");
             $sking_caminho = "../../Imagens/Plataforma/Piso_normal.png";
@@ -56,6 +60,7 @@ class Bloco {
     public function getProximo() {
         return $this->proximo;
     }
+
 
     public function setTipo($tipo) {
 
@@ -111,6 +116,7 @@ class Bloco {
         echo " blocos normal: " . self::$contagemBlocos["blocosNormais"] ."<br>";
         echo " blocos explodidos: " . self::$contagemBlocos["blocosExplodidos"] ."<br>";
         echo "-------------------------------------------";
+<<<<<<< Updated upstream
     }
 
 
@@ -123,6 +129,11 @@ class Bloco {
     // }
 
 
+=======
+
+    }
+
+>>>>>>> Stashed changes
     public function exibirBlocos() {
         $blocoAtual = $this;
         $blocos = []; // Array para armazenar os blocos
@@ -162,7 +173,7 @@ class Bloco {
         // Adiciona novos blocos ao final da cadeia
         for ($i = 0; $i < $quantidade; $i++) {
             $tipo = $this->sorteio();
-            $novoBloco = new Bloco($tipo);
+            $novoBloco = new Bloco($tipo, $this->getSkin(), $this->nivel);
             $blocoAtual->encadearBloco($novoBloco);
             $blocoAtual = $novoBloco;
         }
@@ -170,6 +181,7 @@ class Bloco {
 
     private function sorteio() {
         
+<<<<<<< Updated upstream
         $d= rand(1, 100);
 
         if ($d <= 50) {
@@ -181,6 +193,37 @@ class Bloco {
         }elseif ($d > 90 && $d <= 100) {
             return 4;
         }
+=======
+        //return 2;
+        $d= rand(1, 100);
+
+        if($this->nivel == 3){
+        
+            if ($d <= 50) {
+                return 1;
+            }elseif ($d > 50 && $d <= 60) {
+                return 4;
+            }elseif ($d > 60 && $d <= 70) {
+                return 3;
+            }elseif ($d > 70 && $d <= 100) {
+                return 2;
+            }
+
+        } else {
+
+            if ($d <= 50) {
+                return 1;
+            }elseif ($d > 50 && $d <= 80) {
+                return 2;
+            }elseif ($d > 80 && $d <= 90) {
+                return 3;
+            }elseif ($d > 90 && $d <= 100) {
+                return 4;
+            }
+            
+        }
+        
+>>>>>>> Stashed changes
 
 
     }
